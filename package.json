@@ -1,0 +1,30 @@
+{
+  "name": "react-Tazdingo",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/regou/react-Tazdingo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/regou/react-Tazdingo/issues"
+  },
+  "homepage": "https://github.com/regou/react-Tazdingo",
+  "devDependencies": {
+    "browserify": "*",
+    "react": "^0.12.1",
+    "reactify": "^0.17.1",
+    "envify": "^3.2.0"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
+}
