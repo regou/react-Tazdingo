@@ -3,4 +3,4 @@
 
 shellpath=`dirname $0`
 
-browserify $shellpath"/jsx/index.js" -d -o $shellpath"/compiles/bundle.js"
+browserify $shellpath"/js/index.js" -d -o $shellpath"/compiles/bundle.js"
