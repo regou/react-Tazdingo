@@ -1,7 +1,14 @@
 var React = require('react');
 
 
-var Taz = require('./jsx/Taz.jsx');
+var UTWrap = require('./jsx/UserTable.jsx');
 
 
-React.render(<Taz/>,document.body);
+var users = [
+	{name: 'wx', age: '11', isBoy: true},
+	{name: 'qq', age: '85', isBoy: false}
+
+];
+
+
+React.render(<UTWrap list={users}/>,document.body);
