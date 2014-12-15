@@ -2,53 +2,68 @@
 var React = require("react");
 
 var UTWrap = React.createClass({
+	getInitialState:function(){
+		return {
+			list:this.props.list
+		}
+	},
+	filterKeyChanged:function(e){
+		var val = e.target.value;
+		this.setProps({
+			filterBy:val
+		})
+
+	},
 	render: function () {
+		var changer = this.props.changeFilter.bind(this);
 		return (<table>
-		<UTheader/>
-		<UTbody list={this.props.list}/>
+		<UTheader changefilterKey={this.filterKeyChanged} filterBy={this.props.filterBy} onChange={changer}/>
+		<UTbody list={this.state.list}/>
 		</table>)
 	}
 });
 
 var UTheader = React.createClass({
+	getInitialState: null,
+	componentWillUnmount: null,
+
 	render: function() {
-		return (<thead>
-			<tr><th>Name</th><th>Age</th></tr>
-		</thead>);
-	}
+		return (
+			<thead>
+				<th>
+					<td><input onChange={this.props.onChange} type="text"/></td>
+					<td>
+						<select defaultValue={this.props.filterBy} onChange={this.props.changefilterKey}>
+							<option value="name">Name</option>
+							<option value="email">Email</option>
+						</select>
+					</td>
+				</th>
+
+			</thead>
+		);
+	},
+	componentDidMount: null
 });
 
 var UTbody = React.createClass({
-	render: function() {
-		var rows = [];
-		var list = this.props.list;
-
-		return (
-			<tbody>
-			 {list.map(function(userItem,i) {
-				 var sex = userItem.isBoy ? 'male' : 'female';
-				 return (<User key={i} sex={sex} name={userItem.name} age={userItem.age}/>);
-			 })}
-			</tbody>
-		);
-	}
-});
-
-var User = React.createClass({
-	render: function() {
-		var cx = require('react/addons').addons.classSet;
-		var classes = cx({
-			'user-row': true,
-			'isBoy': this.props.sex == 'male'
+	render: function () {
+		var list = this.props.list.map(function(item,i){
+			return (
+				<tr key={i}>
+					<td>{item.name}</td>
+					<td>{item.email}</td>
+					<td>{item.tel}</td>
+					<td>{item.address}</td>
+				</tr>
+			);
 		});
 		return (
-			<tr className={classes}>
-				<td>{this.props.name}</td>
-				<td>{this.props.age}</td>
-			</tr>
+			<tbody>{list}</tbody>
 		);
 	}
 });
+
 
 
 
